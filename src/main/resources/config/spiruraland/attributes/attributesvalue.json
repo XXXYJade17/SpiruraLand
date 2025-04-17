@@ -1,0 +1,44 @@
+{
+  "rank1": {
+    "level1": {
+      "damage": 1,
+      "health": 3
+    },
+    "level2": {
+      "damage": 2,
+      "health": 6
+    },
+    "level3": {
+      "damage": 3,
+      "health": 9
+    },
+    "level4": {
+      "damage": 4,
+      "health": 12
+    },
+    "level5": {
+      "damage": 5,
+      "health": 15
+    },
+    "level6": {
+      "damage": 6,
+      "health": 18
+    },
+    "level7": {
+      "damage": 7,
+      "health": 21
+    },
+    "level8": {
+      "damage": 8,
+      "health": 24
+    },
+    "level9": {
+      "damage": 9,
+      "health": 27
+    },
+    "level10": {
+      "damage": 10,
+      "health": 30
+    }
+  }
+}

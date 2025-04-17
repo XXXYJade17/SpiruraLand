@@ -1,0 +1,14 @@
+{
+  "command.admin.add.experience" : "Player %s's experience had added %d successfully!",
+  "command.admin.get" : "Player %s: %s %s %d",
+  "command.admin.set.rank" : "Player %s's rank is now %s!",
+  "command.admin.set.level" : "Player %s's level is now %s!",
+  "command.admin.set.experience" : "Player %s's experience is now %d!",
+  "command.admin.shackle.none" : "Player %s didn't have shackle!",
+  "command.admin.shackle.break" : "Player %s had broken through shackle successfully!",
+  "command.player.get" : "Rank: %s,Level: %s,Experience: %d",
+  "command.player.shackle.break.fail" : "You had failed to break through shackle!",
+  "command.player.shackle.break.success" : "You had broken through shackle successfully!",
+  "command.player.shackle.none" : "You didn't have shackle!",
+  "online.reward.experience" : "You had received %d experience!"
+}

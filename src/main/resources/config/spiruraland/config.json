@@ -1,0 +1,9 @@
+{
+  "lang" : "en_us.json",
+  "spirura": {
+    "ticks_per_increase": 600
+  },
+  "attributes": {
+    "threshold_defence": 500
+  }
+}

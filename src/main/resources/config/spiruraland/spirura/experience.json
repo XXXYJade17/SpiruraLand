@@ -1,0 +1,86 @@
+{
+  "rank1":{
+    "level1": {
+      "require": 100,
+      "increase": 1
+    },
+    "level2": {
+      "require": 200,
+      "increase": 2
+    },
+    "level3": {
+      "require": 300,
+      "increase": 3
+    },
+    "level4": {
+      "require": 400,
+      "increase": 4
+    },
+    "level5": {
+      "require": 500,
+      "increase": 5
+    },
+    "level6": {
+      "require": 600,
+      "increase": 6
+    },
+    "level7": {
+      "require": 700,
+      "increase": 7
+    },
+    "level8": {
+      "require": 800,
+      "increase": 8
+    },
+    "level9": {
+      "require": 900,
+      "increase": 9
+    },
+    "level10": {
+      "require": 1000,
+      "increase": 10
+    }
+  },
+  "rank2":{
+    "level1": {
+      "require": 1100,
+      "increase": 11
+    },
+    "level2": {
+      "require": 1200,
+      "increase": 12
+    },
+    "level3": {
+      "require": 1300,
+      "increase": 13
+    },
+    "level4": {
+      "require": 1400,
+      "increase": 14
+    },
+    "level5": {
+      "require": 1500,
+      "increase": 15
+    },
+    "level6": {
+      "require": 1600,
+      "increase": 16
+    },
+    "level7": {
+      "require": 1700,
+      "increase": 17
+    },
+    "level8": {
+      "require": 1800,
+      "increase": 18
+    },
+    "level9": {
+      "require": 1900,
+      "increase": 19
+    },
+    "level10": {
+      "require": 2000,
+      "increase": 20
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "rank1": {
+    "level1": {
+      "shackle": false
+    },
+    "level2": {
+      "shackle": false
+    },
+    "level3": {
+      "shackle": true,
+      "break_rate": 0.90,
+      "rate_increase": 0.05
+    },
+    "level4": {
+      "shackle": false
+    },
+    "level5": {
+      "shackle": false
+    },
+    "level6": {
+      "shackle": true,
+      "break_rate": 0.85,
+      "rate_increase": 0.05
+    },
+    "level7": {
+      "shackle": false
+    },
+    "level8": {
+      "shackle": false
+    },
+    "level9": {
+      "shackle": false
+    },
+    "level10": {
+      "shackle": true,
+      "break_rate": 0.80,
+      "rate_increase": 0.05
+    }
+  },
+  "rank2": {
+    "level1": {
+      "shackle": false
+   },
+    "level2": {
+      "shackle": false
+    },
+    "level3": {
+      "shackle": true,
+      "break_rate": 0.75,
+      "rate_increase": 0.05
+    },
+    "level4": {
+      "shackle": false
+    },
+    "level5": {
+      "shackle": false
+    },
+    "level6": {
+      "shackle": true,
+      "break_rate": 0.70,
+      "rate_increase": 0.05
+    },
+    "level7": {
+      "shackle": false
+    },
+    "level8": {
+      "shackle": false
+    },
+    "level9": {
+      "shackle": false
+    },
+    "level10": {
+      "shackle": true,
+      "break_rate": 0.65,
+      "rate_increase": 0.05
+    }
+  }
+}
