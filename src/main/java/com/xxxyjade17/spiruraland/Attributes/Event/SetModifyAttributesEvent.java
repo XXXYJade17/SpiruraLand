@@ -1,13 +1,13 @@
 package com.xxxyjade17.spiruraland.Attributes.Event;
 
-import com.xxxyjade17.spiruraattribute.Attributes.*;
-import com.xxxyjade17.spiruraattribute.SpiruraAttribute;
+import com.xxxyjade17.spiruraland.Attributes.Attribute.*;
+import com.xxxyjade17.spiruraland.SpiruraLand;
 import net.minecraft.world.entity.EntityType;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
 
-@Mod.EventBusSubscriber(modid = SpiruraAttribute.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = SpiruraLand.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SetModifyAttributesEvent {
     @SubscribeEvent
     public static void setModifyAttributes(EntityAttributeModificationEvent event) {
