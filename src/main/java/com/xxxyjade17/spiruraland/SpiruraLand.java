@@ -1,6 +1,7 @@
 package com.xxxyjade17.spiruraland;
 
 import com.mojang.logging.LogUtils;
+import com.xxxyjade17.spiruraland.Attributes.Register.AttributesRegister;
 import com.xxxyjade17.spiruraland.Spirura.Command.AdminCommand;
 import com.xxxyjade17.spiruraland.Spirura.Command.PlayerCommand;
 import net.neoforged.bus.api.IEventBus;
@@ -14,12 +15,13 @@ public class SpiruraLand {
     public static final String MODID = "spiruraland";
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public SpiruraLand(IEventBus modEventBus) {
+    public SpiruraLand(IEventBus bus) {
         NeoForge.EVENT_BUS.addListener((ServerStartingEvent event) ->
                 PlayerCommand.getINSTANCE().registerCommand(event.getServer().getCommands().getDispatcher())
         );
         NeoForge.EVENT_BUS.addListener((ServerStartingEvent event) ->
                 AdminCommand.getINSTANCE().registerCommand(event.getServer().getCommands().getDispatcher())
         );
+        AttributesRegister.register(bus);
     }
 }
