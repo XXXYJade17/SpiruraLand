@@ -1,9 +1,9 @@
-package com.xxxyjade17.spiruraland.Attributes.Register;
+package com.xxxyjade17.spiruraland.Attributes.Registry;
 
 import com.xxxyjade17.spiruraland.Attributes.Attribute.*;
 import net.neoforged.bus.api.IEventBus;
 
-public class AttributesRegister {
+public class AttributesRegistries {
     public static void register(IEventBus bus){
         AttackRange.register(bus);
         CritChance.register(bus);

@@ -1,7 +1,8 @@
 package com.xxxyjade17.spiruraland;
 
 import com.mojang.logging.LogUtils;
-import com.xxxyjade17.spiruraland.Attributes.Register.AttributesRegister;
+import com.xxxyjade17.spiruraland.Attributes.Registry.AttributesRegistries;
+import com.xxxyjade17.spiruraland.Monsters.Registry.MonstersRegistries;
 import com.xxxyjade17.spiruraland.Spirura.Command.AdminCommand;
 import com.xxxyjade17.spiruraland.Spirura.Command.PlayerCommand;
 import net.neoforged.bus.api.IEventBus;
@@ -22,6 +23,7 @@ public class SpiruraLand {
         NeoForge.EVENT_BUS.addListener((ServerStartingEvent event) ->
                 AdminCommand.getINSTANCE().registerCommand(event.getServer().getCommands().getDispatcher())
         );
-        AttributesRegister.register(bus);
+        AttributesRegistries.register(bus);
+        MonstersRegistries.register(bus);
     }
 }
