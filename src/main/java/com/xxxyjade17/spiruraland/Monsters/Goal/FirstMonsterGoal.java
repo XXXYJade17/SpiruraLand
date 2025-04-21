@@ -13,7 +13,7 @@ import java.util.EnumSet;
 public class FirstMonsterGoal extends Goal {
 
     private Monster monster; // 使用 Mob 而不是具体的 Monster，更通用
-    private final double speed = 0.1D; // 回家时的移动速度
+    private final double speed = 1D; // 回家时的移动速度
     private final double maxDistance = 15*15; // 离家最大距离的平方（效率更高）
     @Nullable
     private BlockPos spawnPosition; // 家的位置
@@ -23,6 +23,7 @@ public class FirstMonsterGoal extends Goal {
         this.monster = monster;
         this.navigation = monster.getNavigation();
         this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+        System.out.println("FirstMonsterGoal use successfully!");
     }
 
     // ----- 获取家位置的逻辑 -----
@@ -49,13 +50,6 @@ public class FirstMonsterGoal extends Goal {
             return false;
         }
 
-//        // 检查是否有攻击目标
-//        if (this.monster.getTarget() == null) {
-//            // 没有目标，不需要回家 (除非它迷路了且距离远，可以加逻辑)
-//            // System.out.println("ReturnHomeGoal: No target, canUse = false");
-//            return false;
-//        }
-
         // 计算当前位置离家的距离平方
         Vec3 currentPosition = this.monster.position();
         double distSqr = currentPosition.distanceToSqr(Vec3.atCenterOf(this.spawnPosition));
@@ -77,6 +71,7 @@ public class FirstMonsterGoal extends Goal {
      */
     @Override
     public boolean canContinueToUse() {
+        System.out.println("canContinueToUse use successfully!");
         // 如果导航未完成，并且距离家还比较远（大于停止距离），就继续执行
         if (!this.navigation.isDone()) {
             if (this.spawnPosition == null) return false; // 防止中途 homePos 丢失
@@ -116,6 +111,7 @@ public class FirstMonsterGoal extends Goal {
      */
     @Override
     public void tick() {
+        System.out.println("tick use successfully!");
         // 通常情况下，导航系统会自动处理移动，这里可以留空
         // 如果需要，可以在这里检查路径是否仍然有效，或者目标是否被阻挡等
         if (this.spawnPosition != null && this.monster.position().distanceToSqr(Vec3.atCenterOf(this.spawnPosition)) <= 1) {

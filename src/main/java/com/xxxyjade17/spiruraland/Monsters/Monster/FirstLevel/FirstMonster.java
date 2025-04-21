@@ -133,6 +133,12 @@ public class FirstMonster extends Monster implements ISpiruraMonster {
     }
 
     @Override
+    public boolean hurt(DamageSource pSource, float pAmount) {
+        super.hurt(pSource, pAmount);
+        return true;
+    }
+
+    @Override
     public void addAdditionalSaveData(CompoundTag compound) {
         if (!this.level().isClientSide()) {
             super.addAdditionalSaveData(compound);
