@@ -1,0 +1,101 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Client",
+      "presentation": {
+        "group": "Mod Development - SpiruraLand",
+        "order": 0
+      },
+      "projectName": "SpiruraLand",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@D:\\yckin.000\\桌面\\Spirura\\SpiruraLand\\SpiruraLand\\build\\moddev\\clientRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@D:\\yckin.000\\桌面\\Spirura\\SpiruraLand\\SpiruraLand\\build\\moddev\\clientRunVmArgs.txt",
+        "-Dfml.modFolders\u003dspiruraland%%D:\\yckin.000\\桌面\\Spirura\\SpiruraLand\\SpiruraLand\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {
+        "MOD_CLASSES": "spiruraland%%D:\\yckin.000\\桌面\\Spirura\\SpiruraLand\\SpiruraLand\\bin\\main"
+      },
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Data",
+      "presentation": {
+        "group": "Mod Development - SpiruraLand",
+        "order": 1
+      },
+      "projectName": "SpiruraLand",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@D:\\yckin.000\\桌面\\Spirura\\SpiruraLand\\SpiruraLand\\build\\moddev\\dataRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@D:\\yckin.000\\桌面\\Spirura\\SpiruraLand\\SpiruraLand\\build\\moddev\\dataRunVmArgs.txt",
+        "-Dfml.modFolders\u003dspiruraland%%D:\\yckin.000\\桌面\\Spirura\\SpiruraLand\\SpiruraLand\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {
+        "MOD_CLASSES": "spiruraland%%D:\\yckin.000\\桌面\\Spirura\\SpiruraLand\\SpiruraLand\\bin\\main"
+      },
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "GameTestServer",
+      "presentation": {
+        "group": "Mod Development - SpiruraLand",
+        "order": 2
+      },
+      "projectName": "SpiruraLand",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@D:\\yckin.000\\桌面\\Spirura\\SpiruraLand\\SpiruraLand\\build\\moddev\\gameTestServerRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@D:\\yckin.000\\桌面\\Spirura\\SpiruraLand\\SpiruraLand\\build\\moddev\\gameTestServerRunVmArgs.txt",
+        "-Dfml.modFolders\u003dspiruraland%%D:\\yckin.000\\桌面\\Spirura\\SpiruraLand\\SpiruraLand\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {
+        "MOD_CLASSES": "spiruraland%%D:\\yckin.000\\桌面\\Spirura\\SpiruraLand\\SpiruraLand\\bin\\main"
+      },
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Server",
+      "presentation": {
+        "group": "Mod Development - SpiruraLand",
+        "order": 3
+      },
+      "projectName": "SpiruraLand",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@D:\\yckin.000\\桌面\\Spirura\\SpiruraLand\\SpiruraLand\\build\\moddev\\serverRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@D:\\yckin.000\\桌面\\Spirura\\SpiruraLand\\SpiruraLand\\build\\moddev\\serverRunVmArgs.txt",
+        "-Dfml.modFolders\u003dspiruraland%%D:\\yckin.000\\桌面\\Spirura\\SpiruraLand\\SpiruraLand\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {
+        "MOD_CLASSES": "spiruraland%%D:\\yckin.000\\桌面\\Spirura\\SpiruraLand\\SpiruraLand\\bin\\main"
+      },
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    }
+  ]
+}

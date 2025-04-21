@@ -2,6 +2,8 @@ package com.xxxyjade17.spiruraland;
 
 import com.mojang.logging.LogUtils;
 import com.xxxyjade17.spiruraland.Attributes.Registry.AttributesRegistries;
+import com.xxxyjade17.spiruraland.CreateiveTab.MonsterTab;
+import com.xxxyjade17.spiruraland.Monsters.Registry.EggsRegistry;
 import com.xxxyjade17.spiruraland.Monsters.Registry.MonstersRegistries;
 import com.xxxyjade17.spiruraland.Spirura.Command.AdminCommand;
 import com.xxxyjade17.spiruraland.Spirura.Command.PlayerCommand;
@@ -25,5 +27,7 @@ public class SpiruraLand {
         );
         AttributesRegistries.register(bus);
         MonstersRegistries.register(bus);
+        EggsRegistry.register(bus);
+        MonsterTab.register(bus);
     }
 }
