@@ -20,6 +20,8 @@ import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
@@ -30,9 +32,12 @@ public class FirstMonster extends Monster {
     private static final EntityDataAccessor<Optional<BlockPos>> DATA_SPAWN_POSITION =
             SynchedEntityData.defineId(FirstMonster.class, EntityDataSerializers.OPTIONAL_BLOCK_POS);
 
+    private static final int REVIVAL_TICKS = 100;
     // 在内存中存储出生点，避免频繁访问 NBT 或 SyncedData
     @Nullable
     private BlockPos spawnPosition = null;
+    private int timer=REVIVAL_TICKS;
+    private boolean isReviving = false;
 
     public FirstMonster(EntityType<? extends Monster> entityType, Level level){
         super(entityType, level);
@@ -77,9 +82,63 @@ public class FirstMonster extends Monster {
             // 如果同步数据也没有，就用当前位置作为最后的手段
             if (this.spawnPosition == null) {
                 setSpawnPosition(this.blockPosition(), this.level());
-                System.out.println("Warning: RespawningMonster birth point was null, set to current pos: " + this.blockPosition());
             }
         }
+        if(this.isReviving){
+            timer--;
+            if(timer<=0){
+                ServerLevel serverLevel = (ServerLevel) this.level();
+                BlockPos respawnPos = this.getSpawnPosition().get();
+                if (!this.isRemoved() && this.level() == serverLevel && serverLevel.isAreaLoaded(respawnPos, 1)) {
+
+                    System.out.println("[RespawningMonster] Executing revival for: " + this.getId());
+
+                    // 恢复实体的状态
+                    this.setHealth(this.getMaxHealth()); // 完全恢复生命值
+                    this.setInvisible(false);              // 取消隐形
+                    this.setInvulnerable(false);             // 取消无敌
+
+                    // 清理可能残留的状态
+                    this.clearFire();                       // 清除火焰
+                    this.setDeltaMovement(Vec3.ZERO);       // 重置速度
+                    this.setPose(Pose.STANDING);
+                    // monster.removeAllEffects();             // (可选) 移除所有药水效果
+
+                    // 传送回复活点
+                    System.out.println("spawnpos:"+respawnPos);
+                    this.teleportTo(respawnPos.getX() + 0.5D, respawnPos.getY(), respawnPos.getZ() + 0.5D);
+
+                    // 确保它仍然持久存在（如果需要）
+//            monster.setPersistenceRequired(true); // 也许不需要，因为removeWhenFarAway=false
+                    setIsReviving(false);
+
+                } else {
+                    System.out.println("[RespawningMonster] Failed to revive: " + this.getId() + ". Entity removed or area unloaded. Pos: " + respawnPos);
+                    // 如果实体因某种原因消失了或无法复活，确保它被彻底移除（以防万一）
+                    if (!this.isRemoved() && this.level() == serverLevel) {
+                        this.discard(); // 或者 remove(RemovalReason.DISCARDED)
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    @Override
+    public void die(DamageSource damageSource) {
+        System.out.println("diediedie");
+        this.gameEvent(GameEvent.ENTITY_DIE);
+        this.level().broadcastEntityEvent(this, (byte)3);
+        this.setPose(Pose.DYING);
+        this.setHealth(0.001f);
+//        this.deathTime-=REVIVAL_TICKS;
+        this.setIsReviving(true);
+        this.timer = REVIVAL_TICKS;
+        this.setInvulnerable(true); // 防止后续伤害或交互
+        this.setInvisible(true);    // 使其隐形
+        this.setTarget(null);       // 清除目标
+        this.getNavigation().stop();// 停止移动
     }
 
 //    @Override
@@ -193,5 +252,10 @@ public class FirstMonster extends Monster {
             this.spawnPosition = posFromData.get();
         }
         return posFromData;
+    }
+
+    public void setIsReviving(boolean isReviving) {
+        this.isReviving = isReviving;
+        System.out.println("RespawningMonster isReviving set to: " + isReviving);
     }
 }
