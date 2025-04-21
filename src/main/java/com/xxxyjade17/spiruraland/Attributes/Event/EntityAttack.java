@@ -3,17 +3,22 @@ package com.xxxyjade17.spiruraland.Attributes.Event;
 import com.xxxyjade17.spiruraland.Attributes.Attribute.*;
 import com.xxxyjade17.spiruraland.Config.AttributesConfig;
 import com.xxxyjade17.spiruraland.Config.Config;
+import com.xxxyjade17.spiruraland.Monsters.Monster.Interface.ISpiruraMonster;
 import com.xxxyjade17.spiruraland.SpiruraLand;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Monster;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.event.entity.EntityEvent;
+import net.neoforged.neoforge.event.entity.living.LivingAttackEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 
@@ -94,6 +99,16 @@ public class EntityAttack {
                     ?player.getAttributeValue(AttackRange.ATTACK_RANGE.get())
                     :attributesConfig.getDefaultAttributeValue("attack_range");
             event.setCanceled(attackRange*attackRange<target.distanceToSqr(player));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onAttackPlayer(LivingAttackEvent event){
+        if(event.getEntity() instanceof ServerPlayer player && event.getSource().getEntity() instanceof Monster monster){
+            if(monster.getAttribute(AttackRange.ATTACK_RANGE.get()) != null){
+                int attackRange = (int) monster.getAttribute(AttackRange.ATTACK_RANGE.get()).getValue();
+                event.setCanceled(attackRange*attackRange<monster.distanceToSqr(player));
+            }
         }
     }
 

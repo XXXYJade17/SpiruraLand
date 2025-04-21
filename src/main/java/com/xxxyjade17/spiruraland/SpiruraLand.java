@@ -29,5 +29,6 @@ public class SpiruraLand {
         MonstersRegistries.register(bus);
         EggsRegistry.register(bus);
         MonsterTab.register(bus);
+
     }
 }
