@@ -72,6 +72,9 @@ public class FirstMonsterGoal extends Goal {
     @Override
     public boolean canContinueToUse() {
         System.out.println("canContinueToUse use successfully!");
+        if(this.monster.getTarget() != null){
+            return false;
+        }
         // 如果导航未完成，并且距离家还比较远（大于停止距离），就继续执行
         if (!this.navigation.isDone()) {
             if (this.spawnPosition == null) return false; // 防止中途 homePos 丢失
@@ -89,11 +92,15 @@ public class FirstMonsterGoal extends Goal {
      */
     @Override
     public void start() {
-        System.out.println("ReturnHomeGoal: Starting to return home to " + this.spawnPosition);
-        // 清除当前的攻击目标，强制停止攻击行为
-        this.monster.setTarget(null);
-        // 开始导航回家
-        this.navigation.moveTo(this.spawnPosition.getX() + 0.5, this.spawnPosition.getY(), this.spawnPosition.getZ() + 0.5, this.speed);
+        double distSqr = this.monster.position().distanceToSqr(Vec3.atCenterOf(this.spawnPosition));
+        if(distSqr < maxDistance && this.monster.getTarget() == null){
+            this.navigation.moveTo(this.spawnPosition.getX() + 0.5, this.spawnPosition.getY(), this.spawnPosition.getZ() + 0.5, this.speed);
+        }
+        else if (distSqr > maxDistance){
+            this.navigation.stop();
+            this.monster.setTarget(null);
+            this.monster.teleportTo(this.spawnPosition.getX() + 0.5, this.spawnPosition.getY(), this.spawnPosition.getZ() + 0.5);
+        }
     }
 
     /**
@@ -112,6 +119,9 @@ public class FirstMonsterGoal extends Goal {
     @Override
     public void tick() {
         System.out.println("tick use successfully!");
+        if(this.monster.getTarget() != null){
+            return;
+        }
         // 通常情况下，导航系统会自动处理移动，这里可以留空
         // 如果需要，可以在这里检查路径是否仍然有效，或者目标是否被阻挡等
         if (this.spawnPosition != null && this.monster.position().distanceToSqr(Vec3.atCenterOf(this.spawnPosition)) <= 1) {

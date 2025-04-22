@@ -18,6 +18,8 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -55,7 +57,9 @@ public class FirstMonster extends Monster implements ISpiruraMonster {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(8, new FirstMonsterGoal(this));
+        this.goalSelector.addGoal(1, new FloatGoal(this));
+        this.goalSelector.addGoal(0, new FirstMonsterGoal(this));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2D, true));
     }
 
     @Nullable
@@ -134,8 +138,11 @@ public class FirstMonster extends Monster implements ISpiruraMonster {
 
     @Override
     public boolean hurt(DamageSource pSource, float pAmount) {
-        super.hurt(pSource, pAmount);
-        return true;
+        if (pSource.getEntity() instanceof ServerPlayer player) {
+            // 设置攻击源为目标
+            this.setTarget(player);
+        }
+        return super.hurt(pSource, pAmount);
     }
 
     @Override
